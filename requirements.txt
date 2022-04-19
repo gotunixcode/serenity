@@ -1,0 +1,12 @@
+django
+django-restframework
+django-redis
+Markdown
+markdown-include
+django-filter
+psycopg2-binary
+django-extensions
+simple-crypt
+pyjwt
+pyjwt[crypto]
+tzdata

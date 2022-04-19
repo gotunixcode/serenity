@@ -1,0 +1,21 @@
+name: Release
+
+on:  
+  push:
+    tags:
+      - '*'
+      
+jobs:
+    release-image:
+        runs-on: self-hosted
+        
+        steps:
+            - name: Clear previous build data
+              run: rm -rf serenity
+
+            - name: Check out repo
+              uses: actions/checkout@v2
+
+            - name: Build docker image
+              run: |
+                bash build.sh -r $GITHUB_REF_NAME

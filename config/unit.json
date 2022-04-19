@@ -1,0 +1,40 @@
+{
+  "listeners": {
+    "*:8000": {
+      "pass": "routes"
+    }
+  },
+
+  "routes": [
+    {
+      "match": {
+        "uri": "/static/*"
+      },
+      "action": {
+        "share": "/opt/serenity$uri"
+      }
+    },
+
+    {
+      "action": {
+        "pass": "applications/serenity"
+      }
+    }
+  ],
+
+  "applications": {
+    "serenity": {
+      "type": "python 3",
+      "path": "/opt/serenity",
+      "module": "serenity.wsgi",
+      "processes": {
+        "max": 10,
+        "spare": 1,
+        "idle_timeout": 120
+      }
+    }
+  },
+
+  "access_log": "/dev/stdout"
+}
+
