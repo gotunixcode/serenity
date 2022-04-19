@@ -8,7 +8,7 @@
 <div align="center">
   Serenity
   <br />
-  <a href="#about"><strong>Explore the screenshots »</strong></a>
+<!--  <a href="#about"><strong>Explore the screenshots »</strong></a> -->
   <br />
   <br />
   <a href="https://github.com/gotunixcode/serenity/issues/new?assignees=&labels=bug&template=01_BUG_REPORT.md&title=bug%3A+">Report a Bug</a>
@@ -43,7 +43,6 @@
 - [Authors & contributors](#authors--contributors)
 - [Security](#security)
 - [License](#license)
-- [Acknowledgements](#acknowledgements)
 
 </details>
 
@@ -53,14 +52,22 @@
 
 <table><tr><td>
 
-> **[?]**
-> Provide general information about your project here.
-> What problem does it (intend to) solve?
-> What is the purpose of your project?
-> Why did you undertake it?
-> You don't have to answer all the questions -- just the ones relevant to your project.
+> Project Serenity.  This is going to be hard to define at the moment i'm still trying to work out everything I want to include.
+> To start i'm building a very very basic server inventory system but not as an inventory system, the inventory added along with
+> location (sites), and tags, will be used to generate inventory files used by Ansible for automation. 
+>
+> With the help of Postgres, Redis, and Celery I will also be building a scheduler/reporting service to setup playbooks to run
+> on schedules using a mixture of Celery and cron.
+>
+> As I get further along I'm also going to work on generating my inventory data using other inventory systems such as Netbox.
+>
+> I'm also going to be building in user management built around Ansible roles, I might even attempt to build an LDAPSync tool
+> to scrape Active Directory OU's and groups, to dynamically add users to Linux systems using ansible/AD Groups.
+> Part of this process will also depend on ssh key management which initially will just be standard ssh keys however,
+> As the codebase matures i'm going to incorporate Keystore which was a standalone app that was essentially a
+> self service SSH-CA signing service, but I will be combining it in Serenity.
 
-<details>
+<!--<details>
 <summary>Screenshots</summary>
 <br>
 
@@ -71,41 +78,47 @@
 | :-------------------------------------------------------------------: | :--------------------------------------------------------------------: |
 | <img src="docs/images/screenshot.png" title="Home Page" width="100%"> | <img src="docs/images/screenshot.png" title="Login Page" width="100%"> |
 
-</details>
+</details> -->
 
 </td></tr></table>
 
 ### Built With
 
-> **[?]**
-> Please provide the technologies that are used in the project.
+> We will be using a number of technologies to build Serenity. (The initial list)
+> - Docker
+> - Django/Python
+> - Celery
+> - Redis
+> - Postgresql
 
 ## Getting Started
 
 ### Prerequisites
 
-> **[?]**
-> What are the project requirements/dependencies?
+> A modern Linux system, you could run Serenity as a bare metal application if you desire, However it would be highly recommended
+> building it using Docker (or Kubernetes)
+>
+> - Docker Project: https://github.com/gotunixcode/serenity-docker
+> - I will eventually make a kubernetes deployment file and include it as well.
 
 ### Installation
 
-> **[?]**
-> Describe how to install and get started with the project.
+> **[?]** TBD
 
 ## Usage
 
-> **[?]**
-> How does one go about using it?
-> Provide various use cases and code examples here.
+> **[?]** TBD
 
 ## Roadmap
 
-See the [open issues](https://github.com/gotunixcode/serenity/issues) for a list of proposed features (and known issues).
+> **[?]** TBD
+
+<!-- See the [open issues](https://github.com/gotunixcode/serenity/issues) for a list of proposed features (and known issues).
 
 - [Top Feature Requests](https://github.com/gotunixcode/serenity/issues?q=label%3Aenhancement+is%3Aopen+sort%3Areactions-%2B1-desc) (Add your votes using the 👍 reaction)
 - [Top Bugs](https://github.com/gotunixcode/serenity/issues?q=is%3Aissue+is%3Aopen+label%3Abug+sort%3Areactions-%2B1-desc) (Add your votes using the 👍 reaction)
 - [Newest Bugs](https://github.com/gotunixcode/serenity/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
-
+-->
 ## Support
 
 > **[?]**
@@ -152,8 +165,10 @@ This project is licensed under the **GNU General Public License v3**.
 
 See [LICENSE](LICENSE) for more information.
 
+<!--
 ## Acknowledgements
 
 > **[?]**
 > If your work was funded by any organization or institution, acknowledge their support here.
 > In addition, if your work relies on other software libraries, or was inspired by looking at other work, it is appropriate to acknowledge this intellectual debt too.
+-->
