@@ -85,8 +85,12 @@
 
 ### Built With
 
-> **[?]**
-> Please provide the technologies that are used in the project.
+> We will be using a number of technologies to build Serenity.
+> - Docker
+> - Django/Python
+> - Celery
+> - Redis
+> - Postgresql
 
 ## Getting Started
 
