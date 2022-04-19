@@ -85,7 +85,7 @@
 
 ### Built With
 
-> We will be using a number of technologies to build Serenity.
+> We will be using a number of technologies to build Serenity. (The initial list)
 > - Docker
 > - Django/Python
 > - Celery
@@ -96,8 +96,10 @@
 
 ### Prerequisites
 
-> **[?]**
-> What are the project requirements/dependencies?
+> A modern Linux system, you could run Serenity as a bare metal application if you desire, However it would be highly recommended
+> building it using Docker (or Kubernetes)
+>
+> - Docker Project: https://github.com/gotunixcode/serenity-docker
 
 ### Installation
 
