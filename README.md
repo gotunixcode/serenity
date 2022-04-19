@@ -54,11 +54,20 @@
 <table><tr><td>
 
 > **[?]**
-> Provide general information about your project here.
-> What problem does it (intend to) solve?
-> What is the purpose of your project?
-> Why did you undertake it?
-> You don't have to answer all the questions -- just the ones relevant to your project.
+> Project Serenity.  This is going to be hard to define at the moment i'm still trying to work out everything I want to include.
+> To start i'm building a very very basic server inventory system but not as an inventory system, the inventory added along with
+> location (sites), and tags, will be used to generate inventory files used by Ansible for automation. 
+>
+> With the help of Postgres, Redis, and Celery I will also be building a scheduler/reporting service to setup playbooks to run
+> on schedules using a mixture of Celery and cron.
+>
+> As I get further along I'm also going to work on generating my inventory data using other inventory systems such as Netbox.
+>
+> I'm also going to be building in user management built around Ansible roles, I might even attempt to build an LDAPSync tool
+> to scrape Active Directory OU's and groups, to dynamically add users to Linux systems using ansible/AD Groups.
+> Part of this process will also depend on ssh key management which initially will just be standard ssh keys however,
+> As the codebase matures i'm going to incorporate Keystore which was a standalone app that was essentially a
+> self service SSH-CA signing service, but I will be combining it in Serenity.
 
 <details>
 <summary>Screenshots</summary>
