@@ -53,7 +53,6 @@
 
 <table><tr><td>
 
-> **[?]**
 > Project Serenity.  This is going to be hard to define at the moment i'm still trying to work out everything I want to include.
 > To start i'm building a very very basic server inventory system but not as an inventory system, the inventory added along with
 > location (sites), and tags, will be used to generate inventory files used by Ansible for automation. 
@@ -69,7 +68,7 @@
 > As the codebase matures i'm going to incorporate Keystore which was a standalone app that was essentially a
 > self service SSH-CA signing service, but I will be combining it in Serenity.
 
-<details>
+<!--<details>
 <summary>Screenshots</summary>
 <br>
 
@@ -80,7 +79,7 @@
 | :-------------------------------------------------------------------: | :--------------------------------------------------------------------: |
 | <img src="docs/images/screenshot.png" title="Home Page" width="100%"> | <img src="docs/images/screenshot.png" title="Login Page" width="100%"> |
 
-</details>
+</details> -->
 
 </td></tr></table>
 
