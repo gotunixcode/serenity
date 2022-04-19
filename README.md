@@ -8,7 +8,7 @@
 <div align="center">
   Serenity
   <br />
-  <a href="#about"><strong>Explore the screenshots »</strong></a>
+<!--  <a href="#about"><strong>Explore the screenshots »</strong></a> -->
   <br />
   <br />
   <a href="https://github.com/gotunixcode/serenity/issues/new?assignees=&labels=bug&template=01_BUG_REPORT.md&title=bug%3A+">Report a Bug</a>
