@@ -4,6 +4,18 @@
 ## |- Description : Script to build/release serenity image
 ## |- Author      : Justin Ovens <jovens@gotunixcode.net>
 #########################################################################################################################
+##
+## TODO:
+##
+##  - Need to update the script to accept the run number from github actions for automatic builds
+##  - And also need to add logic so if a run id isn't supplied we use our internal build counter
+##    and identify the image as a manual build.
+##
+##      What i'm thinking for builds coming from github actions  (date.run_num)
+##      for manual builds date.m_build_number
+
+
+
 
 echo "▶️ $0 $*"
 
@@ -27,6 +39,7 @@ function display_help {
     echo "      -t          | Override the Build Tag"
     echo "      -r          | Release the image to hub.docker.com"
     echo "      -c          | Specify build environmental file to use."
+    echo "      -i          | Build counter (Using the GITHUB_RUN_NUMBER varible)"
     echo " "
     echo "-------------------------------------------------------------------------------------------------------------------------"
     exit 1
@@ -94,7 +107,7 @@ function push_image {
 }
 
 
-while getopts ":t:r:c:hlpd" opt; do
+while getopts ":i:t:r:c:hlpd" opt; do
     case ${opt} in
         c)
             ENV_FILES+=("${OPTARG}")
@@ -104,6 +117,9 @@ while getopts ":t:r:c:hlpd" opt; do
             ;;
         h)
             display_help
+            ;;
+        i)
+            BUILD_COUNT=${OPTARG}
             ;;
         l)
             DOCKERHUB_PUSH=0
