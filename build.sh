@@ -4,6 +4,18 @@
 ## |- Description : Script to build/release serenity image
 ## |- Author      : Justin Ovens <jovens@gotunixcode.net>
 #########################################################################################################################
+##
+## TODO:
+##
+##  - Need to update the script to accept the run number from github actions for automatic builds
+##  - And also need to add logic so if a run id isn't supplied we use our internal build counter
+##    and identify the image as a manual build.
+##
+##      What i'm thinking for builds coming from github actions  (date.run_num)
+##      for manual builds date.m_build_number
+
+
+
 
 echo "▶️ $0 $*"
 
@@ -27,33 +39,40 @@ function display_help {
     echo "      -t          | Override the Build Tag"
     echo "      -r          | Release the image to hub.docker.com"
     echo "      -c          | Specify build environmental file to use."
+    echo "      -a          | Build counter (Using the GITHUB_RUN_NUMBER varible)"
     echo " "
     echo "-------------------------------------------------------------------------------------------------------------------------"
     exit 1
 }
 
 function load_build_file {
-    BUILD_FILE=".build"
-    if [[ -f "${BUILD_FILE}" ]]; then
-        source ${BUILD_FILE}
+    if [[ -z "${GITHUB_ACTIONS}" ]]; then
+        BUILD_FILE=".build"
+        if [[ -f "${BUILD_FILE}" ]]; then
+            source ${BUILD_FILE}
+        else
+            BUILD_NUMBER=0
+            echo "BUILD_NUMBER=${BUILD_NUMBER}" > ${BUILD_FILE}
+        fi
     else
-        BUILD_NUMBER=0
-        echo "BUILD_NUMBER=${BUILD_NUMBER}" > ${BUILD_FILE}
+        BUILD_NUMBER=${GITHUB_RUN_NUMBER}
     fi
 }
 
 function increment_build_number {
-    BUILD_FILE=".build"
-    if [[ -f "${BUILD_FILE}" ]]; then
-        echo "▶️ Updating build number...."
-        BUILD_NUMBER=$(($BUILD_NUMBER+1))
-        if [[ -z "${DRY_RUN}" ]]; then
-            echo "BUILD_NUMBER=${BUILD_NUMBER}" > ${BUILD_FILE}
+    if [[ -z "${GITHUB_ACTIONS}" ]]; then
+        BUILD_FILE=".build"
+        if [[ -f "${BUILD_FILE}" ]]; then
+            echo "▶️ Updating build number...."
+            BUILD_NUMBER=$(($BUILD_NUMBER+1))
+            if [[ -z "${DRY_RUN}" ]]; then
+                echo "BUILD_NUMBER=${BUILD_NUMBER}" > ${BUILD_FILE}
+            else
+                echo "BUILD_NUMBER=${BUILD_NUMBER}"
+            fi
         else
-            echo "BUILD_NUMBER=${BUILD_NUMBER}"
+            load_build_file
         fi
-    else
-        load_build_file
     fi
 }
 
@@ -94,8 +113,12 @@ function push_image {
 }
 
 
-while getopts ":t:r:c:hlpd" opt; do
+while getopts ":a:t:r:c:hlpd" opt; do
     case ${opt} in
+        a)
+            GITHUB_ACTIONS=1
+            GITHUB_RUN_NUMBER=${OPTARG}
+            ;;
         c)
             ENV_FILES+=("${OPTARG}")
             ;;
@@ -104,6 +127,9 @@ while getopts ":t:r:c:hlpd" opt; do
             ;;
         h)
             display_help
+            ;;
+        i)
+            BUILD_COUNT=${OPTARG}
             ;;
         l)
             DOCKERHUB_PUSH=0
